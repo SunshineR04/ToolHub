@@ -2,6 +2,9 @@ backend:
   name: git-gateway
   branch: main
 
+site_url: https://tangerine-starburst-022d29.netlify.app
+display_url: https://tangerine-starburst-022d29.netlify.app
+
 media_folder: "public/images"
 public_folder: "/images"
 
