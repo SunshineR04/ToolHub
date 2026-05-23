@@ -11,6 +11,21 @@ import 'tailwindcss/tailwind.css';
     <meta name="description" content="好用的工具和网站集合" />
     <title>ToolHub - 好用的工具集合</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", function(user) {
+          if (!user) {
+            window.netlifyIdentity.on("login", function() {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+        window.netlifyIdentity.on("confirm", function() {
+          document.location.href = "/admin/";
+        });
+      }
+    </script>
   </head>
   <body class="bg-gray-50 text-gray-900 min-h-screen">
     <Header />
