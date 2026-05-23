@@ -6,10 +6,9 @@ import CategoryFilter from '../components/CategoryFilter.astro';
 import ToolCard from '../components/ToolCard.astro';
 
 const allTools = await getCollection('tools');
-const sorted = allTools.sort((a, b) => {
-  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
-  return (b.data.order || 0) - (a.data.order || 0);
-});
+const sorted = allTools.sort((a, b) =>
+  a.data.name.localeCompare(b.data.name, 'zh-CN')
+);
 
 const categories = [...new Set(allTools.map(t => t.data.category))].sort();
 ---
