@@ -83,8 +83,8 @@ collections:
         default: []
         fields:
           - { label: "显示名称", name: "name", widget: "string", hint: "如：Windows 安装包、macOS 版本" }
-          - { label: "上传文件", name: "file", widget: "file", required: false }
-          - { label: "外部下载链接", name: "url", widget: "string", required: false, hint: "如果不传文件，可以填写外部下载链接" }
+          - { label: "上传文件 (<6MB)", name: "file", widget: "file", required: false, hint: "小文件可直接上传，超过6MB会失败" }
+          - { label: "外部下载链接", name: "url", widget: "string", required: false, hint: "大文件推荐：上传到 GitHub Releases，这里粘贴下载链接" }
       - { label: "精选推荐", name: "featured", widget: "boolean", default: false, required: false }
       - { label: "排序权重", name: "order", widget: "number", default: 0, value_type: "int", min: 0, max: 100, required: false }
       - { label: "正文", name: "body", widget: "markdown", required: false }
