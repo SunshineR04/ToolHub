@@ -1,0 +1,27 @@
+---
+const { categories } = Astro.props;
+const currentPath = Astro.url.pathname;
+const activeClass = 'bg-primary-600 text-white shadow-md';
+const inactiveClass = 'bg-white text-gray-600 border hover:border-primary-300 hover:text-primary-600';
+const baseClass = 'px-4 py-2 rounded-full text-sm font-medium transition-all';
+---
+
+<div class="flex flex-wrap gap-2 mb-6">
+  <a
+    href="/"
+    class={`${baseClass} ${currentPath === '/' ? activeClass : inactiveClass}`}
+  >
+    全部
+  </a>
+  {categories.map((cat: string) => {
+    const isActive = currentPath.includes(encodeURIComponent(cat));
+    return (
+      <a
+        href={`/categories/${encodeURIComponent(cat)}`}
+        class={`${baseClass} ${isActive ? activeClass : inactiveClass}`}
+      >
+        {cat}
+      </a>
+    );
+  })}
+</div>

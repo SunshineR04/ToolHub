@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SearchBar from '../../components/SearchBar.astro';
+import CategoryFilter from '../../components/CategoryFilter.astro';
+import ToolCard from '../../components/ToolCard.astro';
+
+export async function getStaticPaths() {
+  const tools = await getCollection('tools');
+  const categories = [...new Set(tools.map(t => t.data.category))];
+  return categories.map(cat => ({ params: { category: cat } }));
+}
+
+const { category } = Astro.params;
+const allTools = await getCollection('tools');
+const filtered = allTools.filter(t => t.data.category === category);
+const categories = [...new Set(allTools.map(t => t.data.category))].sort();
+---
+
+<BaseLayout>
+  <div class="py-8 text-center">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">{category}</h1>
+    <p class="text-gray-500">共 {filtered.length} 个工具</p>
+  </div>
+
+  <SearchBar count={filtered.length} />
+  <CategoryFilter categories={categories} />
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {filtered.map(tool => (
+      <div
+        data-tool-card
+        data-name={tool.data.name}
+        data-desc={tool.data.description}
+        data-tags={tool.data.tags.join(' ')}
+        data-category={tool.data.category}
+      >
+        <ToolCard {...tool.data} />
+      </div>
+    ))}
+  </div>
+</BaseLayout>

@@ -1,0 +1,24 @@
+---
+import Header from '../components/Header.astro';
+import 'tailwindcss/tailwind.css';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="好用的工具和网站集合" />
+    <title>ToolHub - 好用的工具集合</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-gray-50 text-gray-900 min-h-screen">
+    <Header />
+    <main class="max-w-6xl mx-auto px-4 py-6">
+      <slot />
+    </main>
+    <footer class="border-t mt-16 py-8 text-center text-gray-400 text-sm">
+      <p>ToolHub &copy; {new Date().getFullYear()} — 发现好用的工具</p>
+    </footer>
+  </body>
+</html>

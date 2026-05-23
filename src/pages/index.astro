@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchBar from '../components/SearchBar.astro';
+import CategoryFilter from '../components/CategoryFilter.astro';
+import ToolCard from '../components/ToolCard.astro';
+
+const allTools = await getCollection('tools');
+const sorted = allTools.sort((a, b) => {
+  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+  return (b.data.order || 0) - (a.data.order || 0);
+});
+
+const categories = [...new Set(allTools.map(t => t.data.category))].sort();
+---
+
+<BaseLayout>
+  <div class="py-8 text-center">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">发现好用的工具</h1>
+    <p class="text-gray-500">收录 {sorted.length} 个实用工具，持续更新中</p>
+  </div>
+
+  <SearchBar count={sorted.length} />
+  <CategoryFilter categories={categories} />
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {sorted.map(tool => (
+      <div
+        data-tool-card
+        data-name={tool.data.name}
+        data-desc={tool.data.description}
+        data-tags={tool.data.tags.join(' ')}
+        data-category={tool.data.category}
+      >
+        <ToolCard {...tool.data} />
+      </div>
+    ))}
+  </div>
+
+  {sorted.length === 0 && (
+    <p class="text-center text-gray-400 py-16">还没有工具，去管理后台添加吧</p>
+  )}
+</BaseLayout>

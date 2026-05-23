@@ -1,0 +1,33 @@
+---
+const { count } = Astro.props;
+---
+
+<div class="relative mb-8">
+  <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+  </svg>
+  <input
+    type="text"
+    id="search"
+    placeholder={`搜索 ${count} 个工具...`}
+    class="w-full pl-12 pr-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-gray-700 placeholder-gray-400 focus:outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-50 transition-all text-lg"
+    autocomplete="off"
+  />
+</div>
+
+<script>
+  const searchInput = document.getElementById('search') as HTMLInputElement;
+  searchInput?.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    const cards = document.querySelectorAll('[data-tool-card]');
+    cards.forEach((card) => {
+      const el = card as HTMLElement;
+      const name = el.dataset.name || '';
+      const desc = el.dataset.desc || '';
+      const tags = el.dataset.tags || '';
+      const category = el.dataset.category || '';
+      const text = `${name} ${desc} ${tags} ${category}`.toLowerCase();
+      el.style.display = query === '' || text.includes(query) ? '' : 'none';
+    });
+  });
+</script>

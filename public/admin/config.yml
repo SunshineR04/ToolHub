@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "tools"
+    label: "工具"
+    folder: "src/content/tools"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: name
+    fields:
+      - { label: "名称", name: "name", widget: "string" }
+      - { label: "图标 (Emoji)", name: "icon", widget: "string", default: "🔧", hint: "使用 emoji 作为图标，如 🧰、🎨、🤖 等" }
+      - { label: "网址", name: "url", widget: "string" }
+      - { label: "描述", name: "description", widget: "text" }
+      - { label: "分类", name: "category", widget: "select", options: ["开发工具", "设计资源", "AI工具", "效率工具", "学习资源", "素材资源", "其他"] }
+      - { label: "标签", name: "tags", widget: "list", default: [] }
+      - { label: "精选推荐", name: "featured", widget: "boolean", default: false, required: false }
+      - { label: "排序权重", name: "order", widget: "number", default: 0, value_type: "int", min: 0, max: 100, required: false }
+      - { label: "正文", name: "body", widget: "markdown", required: false }
