@@ -5,8 +5,8 @@ backend:
 site_url: https://tangerine-starburst-022d29.netlify.app
 display_url: https://tangerine-starburst-022d29.netlify.app
 
-media_folder: "public/images"
-public_folder: "/images"
+media_folder: "public/uploads"
+public_folder: "/uploads"
 
 collections:
   - name: "tools"
@@ -18,10 +18,18 @@ collections:
     fields:
       - { label: "名称", name: "name", widget: "string" }
       - { label: "图标 (Emoji)", name: "icon", widget: "string", default: "🔧", hint: "使用 emoji 作为图标，如 🧰、🎨、🤖 等" }
-      - { label: "网址", name: "url", widget: "string" }
+      - { label: "网址", name: "url", widget: "string", required: false }
       - { label: "描述", name: "description", widget: "text" }
       - { label: "分类", name: "category", widget: "select", options: ["开发工具", "设计资源", "AI工具", "效率工具", "学习资源", "素材资源", "其他"] }
       - { label: "标签", name: "tags", widget: "list", default: [] }
+      - label: "下载文件"
+        name: "downloads"
+        widget: "list"
+        default: []
+        fields:
+          - { label: "显示名称", name: "name", widget: "string", hint: "如：Windows 安装包、macOS 版本" }
+          - { label: "上传文件", name: "file", widget: "file", required: false }
+          - { label: "外部下载链接", name: "url", widget: "string", required: false, hint: "如果不传文件，可以填写外部下载链接" }
       - { label: "精选推荐", name: "featured", widget: "boolean", default: false, required: false }
       - { label: "排序权重", name: "order", widget: "number", default: 0, value_type: "int", min: 0, max: 100, required: false }
       - { label: "正文", name: "body", widget: "markdown", required: false }

@@ -35,7 +35,7 @@ const categories = [...new Set(allTools.map(t => t.data.category))].sort();
         data-tags={tool.data.tags.join(' ')}
         data-category={tool.data.category}
       >
-        <ToolCard {...tool.data} />
+        <ToolCard {...tool.data} slug={tool.slug} />
       </div>
     ))}
   </div>
