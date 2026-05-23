@@ -17,7 +17,62 @@ collections:
     identifier_field: name
     fields:
       - { label: "名称", name: "name", widget: "string" }
-      - { label: "图标 (Emoji)", name: "icon", widget: "string", default: "🔧", hint: "使用 emoji 作为图标，如 🧰、🎨、🤖 等" }
+      - label: "图标"
+        name: "icon"
+        widget: "select"
+        default: "🔧"
+        options:
+          - { label: "🔧 通用工具", value: "🔧" }
+          - { label: "🧰 工具箱", value: "🧰" }
+          - { label: "🛠️ 实用工具", value: "🛠️" }
+          - { label: "⚙️ 设置工具", value: "⚙️" }
+          - { label: "💻 开发工具", value: "💻" }
+          - { label: "🖥️ 电脑软件", value: "🖥️" }
+          - { label: "⌨️ 代码工具", value: "⌨️" }
+          - { label: "🐛 调试工具", value: "🐛" }
+          - { label: "📦 压缩打包", value: "📦" }
+          - { label: "📋 格式化", value: "📋" }
+          - { label: "🔗 链接工具", value: "🔗" }
+          - { label: "🌐 网络工具", value: "🌐" }
+          - { label: "🔒 安全工具", value: "🔒" }
+          - { label: "📊 数据分析", value: "📊" }
+          - { label: "🗄️ 数据库", value: "🗄️" }
+          - { label: "🎨 设计工具", value: "🎨" }
+          - { label: "🖌️ 绘图工具", value: "🖌️" }
+          - { label: "✏️ 白板绘图", value: "✏️" }
+          - { label: "🖼️ 图片处理", value: "🖼️" }
+          - { label: "🎬 视频工具", value: "🎬" }
+          - { label: "🎵 音频工具", value: "🎵" }
+          - { label: "📷 摄影工具", value: "📷" }
+          - { label: "🎯 图标素材", value: "🎯" }
+          - { label: "🤖 AI 工具", value: "🤖" }
+          - { label: "🧠 智能工具", value: "🧠" }
+          - { label: "✨ AI 生成", value: "✨" }
+          - { label: "💬 对话助手", value: "💬" }
+          - { label: "📝 写作助手", value: "📝" }
+          - { label: "⚡ 效率工具", value: "⚡" }
+          - { label: "⏱️ 时间管理", value: "⏱️" }
+          - { label: "📅 日程管理", value: "📅" }
+          - { label: "✅ 任务管理", value: "✅" }
+          - { label: "📁 文件管理", value: "📁" }
+          - { label: "🔍 搜索工具", value: "🔍" }
+          - { label: "📌 书签收藏", value: "📌" }
+          - { label: "📚 学习资源", value: "📚" }
+          - { label: "🎓 教程工具", value: "🎓" }
+          - { label: "📖 文档工具", value: "📖" }
+          - { label: "🌍 翻译工具", value: "🌍" }
+          - { label: "📝 笔记工具", value: "📝" }
+          - { label: "🖊️ 写作工具", value: "🖊️" }
+          - { label: "📐 设计素材", value: "📐" }
+          - { label: "🎭 素材资源", value: "🎭" }
+          - { label: "🖼️ 图片素材", value: "🖼️" }
+          - { label: "🎵 音效素材", value: "🎵" }
+          - { label: "📹 视频素材", value: "📹" }
+          - { label: "🔤 字体资源", value: "🔤" }
+          - { label: "⭐ 其他", value: "⭐" }
+          - { label: "❤️ 推荐", value: "❤️" }
+          - { label: "🔥 热门", value: "🔥" }
+          - { label: "💡 灵感", value: "💡" }
       - { label: "网址", name: "url", widget: "string", required: false }
       - { label: "描述", name: "description", widget: "text" }
       - { label: "分类", name: "category", widget: "select", options: ["开发工具", "设计资源", "AI工具", "效率工具", "学习资源", "素材资源", "其他"] }
